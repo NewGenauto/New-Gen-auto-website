@@ -125,6 +125,47 @@ button:hover {
     <h3>- Customer</h3>
   </div>
 </div>
+<h2>Booking Form</h2>
+
+<input type="text" id="name" placeholder="Your Name"><br><br>
+
+<input type="tel" id="phone" placeholder="Phone Number"><br><br>
+
+<input type="date" id="date"><br><br>
+
+<select id="service">
+  <option>Airport Pickup</option>
+  <option>Full Day Rental</option>
+  <option>Chauffeur Service</option>
+</select><br><br>
+
+<textarea id="message" placeholder="Pickup details"></textarea><br><br>
+
+<button onclick="sendToWhatsApp()">Submit Booking</button>
+
+<script>
+function sendToWhatsApp() {
+
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+  let date = document.getElementById("date").value;
+  let service = document.getElementById("service").value;
+  let message = document.getElementById("message").value;
+
+  let whatsappMessage =
+`Booking Request:%0A
+Name: ${name}%0A
+Phone: ${phone}%0A
+Date: ${date}%0A
+Service: ${service}%0A
+Details: ${message}`;
+
+  let whatsappURL =
+"https://wa.me/94724805594?text=" + whatsappMessage;
+
+  window.open(whatsappURL, "_blank");
+}
+</script>
 </body>
 
     
