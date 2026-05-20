@@ -39,7 +39,8 @@ min-height: 100vh;
 margin: 0;
 }
 html {
-  background: black;
+    background: black;
+    scroll-behavior: smooth;
 }
 h1 {
     font-size: 50px;
@@ -160,17 +161,17 @@ footer {
 
 <body>
   <nav>
-  <a href="#">Home</a>
-  <a href="#">Services</a>
-  <a href="#">Pricing</a>
-  <a href="#">Reviews</a>
-  <a href="#">Contact</a>
+  <a href="#home">Home</a>
+<a href="#services">Services</a>
+<a href="#pricing">Pricing</a>
+<a href="#reviews">Reviews</a>
+<a href="#contact">Contact</a>
 </nav>
 
   
 
 
-<h1>NEW GEN AUTO</h1>
+<h1 id="home">NEW GEN AUTO</h1>
 
 <p>Luxury EV Rentals & Airport Pickups</p>
 
@@ -182,7 +183,7 @@ footer {
 <a href="https://instagram.com/newg.en2026" target="_blank">
   <button>Instagram</button>
 </a>
-<h2>Pricing</h2>
+<h2 id="pricing">Pricing</h2>
 
 <div class="pricing">
   <div class="card">
@@ -200,7 +201,7 @@ footer {
     <p>From LKR 8000</p>
   </div>
 </div>
-<h2>Customer Reviews</h2>
+<h2 id="reviews">Customer Reviews</h2>
 
 <div class="reviews">
   <div class="card">
@@ -262,7 +263,7 @@ Details: ${message}`;
 <footer>
   <p>© 2025 New Gen Auto. All rights reserved.</p>
 </footer>
-<h2>Contact Us</h2>
+<h2 id="contact">Contact Us</h2>
 
 <p>📞 Phone: +94 724805594</p>
 
@@ -274,7 +275,7 @@ Details: ${message}`;
   <button>WhatsApp Us</button>
 </a>
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119648527.39202061!2d3.2948716000000036!3d23.769362049999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2518e0a10cb4b%3A0x57fe0e3cf9280e75!2sNewGen%20Auto!5e0!3m2!1sen!2sin!4v1779293515670!5m2!1sen!2sin" width="90%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-<h2>Our Services</h2>
+<h2 id="services">Our Services</h2>
 
 <div class="pricing">
   <div class="card">
