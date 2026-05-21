@@ -171,6 +171,39 @@ footer {
   font-weight: bold;
   color: white;
 }
+#successPopup {
+position: fixed;
+bottom: 30px;
+right: 30px;
+background: #00cc66;
+color: white;
+padding: 18px 30px;
+border-radius: 12px;
+font-size: 18px;
+font-weight: bold;
+z-index: 99999;
+animation: popupFade 0.4s ease;
+}
+
+@keyframes popupFade {
+from {
+opacity: 0;
+transform: translateY(20px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+input, select, textarea {
+  width: 80%;
+  max-width: 400px;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  margin: 8px;
+}
 </style>
 
 </head>
@@ -294,7 +327,19 @@ Details: ${message}`;
 "https://wa.me/94724805594?text=" + whatsappMessage;
 
   window.open(whatsappURL, "_blank");
-  alert("Booking request sent successfully!");
+  document.body.insertAdjacentHTML(
+'beforeend',
+`
+<div id="successPopup">
+✅ Booking Sent Successfully
+</div>
+`
+);
+
+setTimeout(() => {
+document.getElementById("successPopup").remove();
+}, 3000);
+
 }
 </script>
 <footer>
