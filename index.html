@@ -258,7 +258,10 @@ function sendToWhatsApp() {
   let time = document.getElementById("time").value;
   let service = document.getElementById("service").value;
   let message = document.getElementById("message").value;
-
+if (name === "" || phone === "" || date === "" || time === "" || message === "") {
+  alert("Please fill all booking details.");
+  return;
+}
   let whatsappMessage =
 `Booking Request:%0A
 Name: ${name}%0A
