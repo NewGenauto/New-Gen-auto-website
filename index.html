@@ -232,7 +232,11 @@ footer {
 
 <input type="tel" id="phone" placeholder="Phone Number"><br><br>
 
-<input type="date" id="date"><br><br>
+<label>Choose Booking Date:</label><br>
+<input type="date" id="date" required><br><br>
+
+<label>Choose Pickup Time:</label><br>
+<input type="time" id="time" required><br><br>
 
 <select id="service">
   <option>Airport Pickup</option>
@@ -250,6 +254,8 @@ function sendToWhatsApp() {
   let name = document.getElementById("name").value;
   let phone = document.getElementById("phone").value;
   let date = document.getElementById("date").value;
+  let time = document.getElementById("time").value;
+  let time = document.getElementById("time").value;
   let service = document.getElementById("service").value;
   let message = document.getElementById("message").value;
 
@@ -258,6 +264,7 @@ function sendToWhatsApp() {
 Name: ${name}%0A
 Phone: ${phone}%0A
 Date: ${date}%0A
+Time: ${time}%0A
 Service: ${service}%0A
 Details: ${message}`;
 
