@@ -241,6 +241,35 @@ button {
 textarea {
   height: 100px !important;
 }
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  font-size: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  z-index: 9999;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+.hero-image {
+  transition: 0.4s;
+}
+
+.hero-image:hover {
+  transform: scale(1.03);
+}
 </style>
 
 </head>
@@ -421,6 +450,10 @@ document.getElementById("successPopup").remove();
     <p>Professional driver service for business or private trips.</p>
   </div>
 </div>
+<a href="https://wa.me/94724805594" class="whatsapp-float" target="_blank">
+  💬
+</a>
+
 </body>
 
     
