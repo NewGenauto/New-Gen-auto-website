@@ -289,6 +289,26 @@ textarea {
     transform: translateY(0);
   }
 }
+form, .booking-form {
+  max-width: 600px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+#name, #phone, #date, #time, #service, #message {
+  display: block !important;
+  width: 90% !important;
+  max-width: 500px !important;
+  margin: 15px auto !important;
+}
+
+#message {
+  height: 120px !important;
+}
+
+button {
+  max-width: 500px !important;
+}
 </style>
 
 </head>
@@ -364,6 +384,7 @@ textarea {
   </div>
 </div>
 <h2>Booking Form</h2>
+<div class="booking-form">
 
 <input type="text" id="name" placeholder="Your Name" required><br><br>
 
@@ -382,7 +403,7 @@ textarea {
 <textarea id="message" placeholder="Pickup details" required></textarea>
 
 <button onclick="sendToWhatsApp()">Submit Booking</button>
-
+</div>
 <script>
   window.onload = function () {
   setTimeout(() => {
