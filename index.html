@@ -324,6 +324,47 @@ iframe {
   margin-left: auto;
   margin-right: auto;
 }
+@media (max-width: 768px) {
+
+  nav {
+    padding: 15px 5px;
+  }
+
+  nav a {
+    margin: 0 8px;
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 38px;
+  }
+
+  h2 {
+    font-size: 32px;
+  }
+
+  .pricing,
+  .reviews {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+    max-width: 320px;
+  }
+
+  iframe {
+    width: 95%;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    width: 90% !important;
+  }
+}
 </style>
 
 </head>
@@ -360,65 +401,73 @@ iframe {
   <button>Instagram</button>
 </a>
 
-  
-<h2 id="pricing">Pricing</h2>
+  <section>
+  <h2 id="pricing">Pricing</h2>
 
-<div class="pricing">
-  <div class="card fade-in">
-    <h3>Airport Pickup</h3>
-    <p>From LKR 8000</p>
+  <div class="pricing">
+    <div class="card fade-in">
+      <h3>Airport Pickup</h3>
+      <p>From LKR 8000</p>
+    </div>
+
+    <div class="card fade-in">
+      <h3>Full Day Rental</h3>
+      <p>From LKR 12000</p>
+    </div>
+
+    <div class="card fade-in">
+      <h3>Chauffeur Service</h3>
+      <p>From LKR 8000</p>
+    </div>
   </div>
+</section>
 
- <div class="card fade-in">
-  <h3>Full Day Rental</h3>
-  <p>From LKR 12000</p>
-</div>
+<section>
+  <h2 id="reviews">Customer Reviews</h2>
 
-  <div class="card fade-in">
-    <h3>Chauffeur Service</h3>
-    <p>From LKR 8000</p>
+  <div class="reviews">
+    <div class="card fade-in">
+      <p>"Very clean car and professional service."</p>
+      <h3>- Customer</h3>
+    </div>
+
+    <div class="card fade-in">
+      <p>"Airport pickup was smooth and on time."</p>
+      <h3>- Customer</h3>
+    </div>
+
+    <div class="card fade-in">
+      <p>"Luxury experience, highly recommended."</p>
+      <h3>- Customer</h3>
+    </div>
   </div>
+</section>
 
-</div>
-<h2 id="reviews">Customer Reviews</h2>
+<section>
+  <h2>Booking Form</h2>
 
-<div class="reviews">
-  <div class="card fade-in">
-    <p>"Very clean car and professional service."</p>
-    <h3>- Customer</h3>
+  <div class="booking-form">
+    <input type="text" id="name" placeholder="Your Name" required>
+
+    <input type="tel" id="phone" placeholder="Phone Number" required>
+
+    <label>Choose Booking Date:</label>
+    <input type="date" id="date" required>
+
+    <label>Choose Pickup Time:</label>
+    <input type="time" id="time" required>
+
+    <select id="service">
+      <option>Airport Pickup</option>
+      <option>Full Day Rental</option>
+      <option>Chauffeur Service</option>
+    </select>
+
+    <textarea id="message" placeholder="Pickup details" required></textarea>
+
+    <button onclick="sendToWhatsApp()">Submit Booking</button>
   </div>
-
-  <div class="card fade-in">
-    <p>"Airport pickup was smooth and on time."</p>
-    <h3>- Customer</h3>
-  </div>
-
-  <div class="card fade-in">
-    <p>"Luxury experience, highly recommended."</p>
-    <h3>- Customer</h3>
-  </div>
-</div>
-<h2>Booking Form</h2>
-<div class="booking-form">
-
-<input type="text" id="name" placeholder="Your Name" required><br><br>
-
-<input type="tel" id="phone" placeholder="Phone Number" required><br><br>
-<label>Choose Booking Date:</label><br>
-<input type="date" id="date" required><br><br>
-
-<label>Choose Pickup Time:</label><br>
-<input type="time" id="time" required><br><br>
-
-<select id="service">
-  <option>Airport Pickup</option>
-  <option>Full Day Rental</option>
-  <option>Chauffeur Service</option>
-</select><br><br>
-<textarea id="message" placeholder="Pickup details" required></textarea>
-
-<button onclick="sendToWhatsApp()">Submit Booking</button>
-</div>
+</section>
 <script>
   window.onload = function () {
   setTimeout(() => {
