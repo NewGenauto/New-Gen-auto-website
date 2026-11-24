@@ -1,38 +1,62 @@
-[
-  {
-    "name": "Black AION V",
-    "make": "GAC AION",
-    "image": "/images/black-aion-v.jpg",
-    "tag": "Self-Drive",
-    "price": "12,000",
-    "unit": "/day",
-    "specs": ["5 Seats", "Automatic", "A/C", "Electric"],
-    "services": ["Full Day Rental"],
-    "electric": true,
-    "show": true
-  },
-  {
-    "name": "White AION V",
-    "make": "GAC AION",
-    "image": "/images/white-aion-v.jpg",
-    "tag": "Self-Drive",
-    "price": "12,000",
-    "unit": "/day",
-    "specs": ["5 Seats", "Automatic", "A/C", "Electric"],
-    "services": ["Full Day Rental"],
-    "electric": true,
-    "show": true
-  },
-  {
-    "name": "Silver AION V",
-    "make": "GAC AION",
-    "image": "/images/silver-aion-v.jpg",
-    "tag": "With Chauffeur",
-    "price": "8,000",
-    "unit": "onwards",
-    "specs": ["5 Seats", "Automatic", "A/C", "Driver included"],
-    "services": ["Airport Pickup", "Chauffeur Service"],
-    "electric": true,
-    "show": true
-  }
-]
+{
+  "cars": [
+    {
+      "name": "Black AION V",
+      "make": "GAC AION",
+      "image": "/images/black-aion-v.jpg",
+      "tag": "Self-Drive",
+      "price": "12,000",
+      "unit": "/day",
+      "specs": [
+        "5 Seats",
+        "Automatic",
+        "A/C",
+        "Electric"
+      ],
+      "services": [
+        "Full Day Rental"
+      ],
+      "electric": true,
+      "show": true
+    },
+    {
+      "name": "White AION V",
+      "make": "GAC AION",
+      "image": "/images/white-aion-v.jpg",
+      "tag": "Self-Drive",
+      "price": "12,000",
+      "unit": "/day",
+      "specs": [
+        "5 Seats",
+        "Automatic",
+        "A/C",
+        "Electric"
+      ],
+      "services": [
+        "Full Day Rental"
+      ],
+      "electric": true,
+      "show": true
+    },
+    {
+      "name": "Silver AION V",
+      "make": "GAC AION",
+      "image": "/images/silver-aion-v.jpg",
+      "tag": "With Chauffeur",
+      "price": "8,000",
+      "unit": "onwards",
+      "specs": [
+        "5 Seats",
+        "Automatic",
+        "A/C",
+        "Driver included"
+      ],
+      "services": [
+        "Airport Pickup",
+        "Chauffeur Service"
+      ],
+      "electric": true,
+      "show": true
+    }
+  ]
+}

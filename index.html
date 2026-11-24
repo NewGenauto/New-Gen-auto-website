@@ -502,7 +502,7 @@
 
 <script>
   // Website content (cars, service cards, at-a-glance boxes, FAQs) lives in the
-  // data/ folder. Edit it at https://app.pagescms.org, no code changes needed.
+  // data/ folder. Edit it from the admin page (admin/), no code changes needed.
   let vehicles = [];
   let selectedVehicle = null;
   let activeFilter = "all";
@@ -660,7 +660,10 @@
   });
 
   Promise.all(["cars.json", "offers.json", "glance.json", "faqs.json"].map(getJSON))
-    .then(([cars, offers, glance, faqs]) => {
+    .then(([carsFile, offersFile, glanceFile, faqsFile]) => {
+      // Each file is { "<name>": [ ... ] } (Decap CMS format)
+      const cars = carsFile.cars || [], offers = offersFile.offers || [],
+            glance = glanceFile.glance || [], faqs = faqsFile.faqs || [];
       vehicles = (cars || [])
         .filter(c => c && c.name && c.show !== false)
         .map(c => ({ ...c, img: imgPath(c.image), specs: c.specs || [], services: c.services || [] }));
