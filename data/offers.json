@@ -1,0 +1,6 @@
+[
+  { "title": "Self-Drive EV", "description": "Drive the AION V yourself, daily or weekly.", "link_text": "From LKR 12,000/day", "service": "Full Day Rental" },
+  { "title": "Private Chauffeur", "description": "A professional driver for business or private trips.", "link_text": "From LKR 8,000", "service": "Chauffeur Service" },
+  { "title": "Airport Pickup", "description": "Reliable pickup and drop-off from the airport.", "link_text": "From LKR 8,000", "service": "Airport Pickup" },
+  { "title": "Book on WhatsApp", "description": "Message us and get confirmation in minutes, any time.", "link_text": "Chat now", "service": "WhatsApp" }
+]

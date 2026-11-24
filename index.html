@@ -350,24 +350,7 @@
   <div class="container">
     <h2 class="section-title">Flexible Rental Options in Colombo</h2>
     <p class="section-sub">Pick the way you want to travel.</p>
-    <div class="offers">
-      <div class="offer o1">
-        <div><h3>Self-Drive EV</h3><p>Drive the AION V yourself, daily or weekly.</p></div>
-        <a class="offer-link" href="#cars" onclick="pickService('Full Day Rental')">From LKR 12,000/day &rarr;</a>
-      </div>
-      <div class="offer o2">
-        <div><h3>Private Chauffeur</h3><p>A professional driver for business or private trips.</p></div>
-        <a class="offer-link" href="#cars" onclick="pickService('Chauffeur Service')">From LKR 8,000 &rarr;</a>
-      </div>
-      <div class="offer o3">
-        <div><h3>Airport Pickup</h3><p>Reliable pickup and drop-off from the airport.</p></div>
-        <a class="offer-link" href="#cars" onclick="pickService('Airport Pickup')">From LKR 8,000 &rarr;</a>
-      </div>
-      <div class="offer o4">
-        <div><h3>Book on WhatsApp</h3><p>Message us and get confirmation in minutes, any time.</p></div>
-        <a class="offer-link" href="https://wa.me/94724805594" target="_blank" rel="noopener">Chat now &rarr;</a>
-      </div>
-    </div>
+    <div class="offers" id="offers"></div>
   </div>
 </section>
 
@@ -391,13 +374,7 @@
   <div class="container">
     <h2 class="section-title">Colombo Rentals at a Glance</h2>
     <p class="section-sub">The key facts before you book.</p>
-    <div class="info-grid">
-      <div class="info-tile"><div class="label">Starting price</div><div class="value">LKR 8,000</div></div>
-      <div class="info-tile"><div class="label">Most popular car</div><div class="value">AION V EV</div></div>
-      <div class="info-tile"><div class="label">Support</div><div class="value">24/7</div></div>
-      <div class="info-tile"><div class="label">Happy customers</div><div class="value">500+</div></div>
-      <div class="info-tile"><div class="label">Fleet</div><div class="value">100% Electric</div></div>
-    </div>
+    <div class="info-grid" id="glance"></div>
   </div>
 </section>
 
@@ -470,34 +447,7 @@
   <div class="container">
     <h2 class="section-title">Frequently Asked Questions</h2>
     <p class="section-sub">Everything you need to know about renting with New Gen Auto.</p>
-    <div class="faq">
-      <details open>
-        <summary>How do I book a car with New Gen Auto?</summary>
-        <p>Choose your service and car on this page, fill in your date, time and pickup details, then tap "Send Booking on WhatsApp". You can also message or call us directly on +94 72 480 5594.</p>
-      </details>
-      <details>
-        <summary>How much does it cost to rent an EV in Colombo?</summary>
-        <p>Self-drive AION V rentals are LKR 12,000 per day. Chauffeur service and airport pickups start from LKR 8,000.</p>
-      </details>
-      <details>
-        <summary>Can I rent with a driver instead of driving myself?</summary>
-        <p>Yes. Our private chauffeur service gives you a professional driver for business or private trips.</p>
-      </details>
-      <details>
-        <summary>Do you offer airport pickups and drop-offs?</summary>
-        <p>Yes, we offer reliable airport pickup and drop-off. Send us your flight details when you book.</p>
-      </details>
-      <details>
-        <summary>Are your cars insured?</summary>
-        <p>Every vehicle is fully insured, inspected and cleaned before each trip.</p>
-      </details>
-      <details>
-        <summary>Are you available 24/7?</summary>
-        <p>Yes. Our team is available 24/7 on WhatsApp and phone.</p>
-      </details>
-      <!-- TODO: add answers for: documents needed, security deposit, minimum age,
-           charging / battery policy, cancellation policy -->
-    </div>
+    <div class="faq" id="faqList"></div>
   </div>
 </section>
 
@@ -551,33 +501,18 @@
 <div id="toast">&#9989; Opening WhatsApp with your booking</div>
 
 <script>
-  // ---- Fleet: edit here when your cars change ----
-  const vehicles = [
-    {
-      name: "Black AION V", make: "GAC AION", img: "images/black-aion-v.jpg",
-      tag: "Self-Drive", price: "12,000", unit: "/day",
-      specs: ["5 Seats", "Automatic", "A/C", "Electric"],
-      services: ["Full Day Rental"]
-    },
-    {
-      name: "White AION V", make: "GAC AION", img: "images/white-aion-v.jpg",
-      tag: "Self-Drive", price: "12,000", unit: "/day",
-      specs: ["5 Seats", "Automatic", "A/C", "Electric"],
-      services: ["Full Day Rental"]
-    },
-    {
-      name: "Silver AION V", make: "GAC AION", img: "images/silver-aion-v.jpg",
-      tag: "With Chauffeur", price: "8,000", unit: "onwards",
-      specs: ["5 Seats", "Automatic", "A/C", "Driver included"],
-      services: ["Airport Pickup", "Chauffeur Service"]
-    }
-  ];
-
+  // Website content (cars, service cards, at-a-glance boxes, FAQs) lives in the
+  // data/ folder. Edit it at https://app.pagescms.org, no code changes needed.
+  let vehicles = [];
   let selectedVehicle = null;
   let activeFilter = "all";
   let searched = false;
 
-  function idFor(name) { return "car-" + name.replace(/\s+/g, ""); }
+  function esc(s) {
+    return String(s ?? "").replace(/[&<>"']/g, c =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  }
+  function imgPath(p) { return String(p || "").replace(/^\/+/, ""); }
 
   function renderCars() {
     const list = activeFilter === "all" ? vehicles : vehicles.filter(v => v.services.includes(activeFilter));
@@ -586,24 +521,54 @@
       grid.innerHTML = `<p>No cars listed for this service. Please WhatsApp us and we'll confirm availability.</p>`;
       return;
     }
-    grid.innerHTML = list.map(v => `
-      <div class="car-card ${selectedVehicle === v.name ? "selected" : ""}" id="${idFor(v.name)}">
+    grid.innerHTML = list.map(v => {
+      const i = vehicles.indexOf(v);
+      const isSel = selectedVehicle === v.name;
+      return `
+      <div class="car-card ${isSel ? "selected" : ""}">
         <div class="car-img">
-          <img src="${v.img}" alt="${v.name} electric car for rent in Colombo" loading="lazy">
-          <span class="car-tag">${v.tag}</span>
-          <span class="car-tag ev">EV</span>
+          <img src="${esc(v.img)}" alt="${esc(v.name)} for rent in Colombo" loading="lazy">
+          ${v.tag ? `<span class="car-tag">${esc(v.tag)}</span>` : ""}
+          ${v.electric ? `<span class="car-tag ev">EV</span>` : ""}
         </div>
         <div class="car-body">
-          <div class="car-make">${v.make}</div>
-          <div class="car-name">${v.name}</div>
-          <div class="car-specs">${v.specs.map(s => `<span>${s}</span>`).join("")}</div>
+          <div class="car-make">${esc(v.make)}</div>
+          <div class="car-name">${esc(v.name)}</div>
+          <div class="car-specs">${v.specs.map(s => `<span>${esc(s)}</span>`).join("")}</div>
           ${searched ? `<div class="car-note">We confirm availability on WhatsApp</div>` : ""}
           <div class="car-foot">
-            <div class="price">LKR ${v.price} <small>${v.unit}</small></div>
-            <button class="btn btn-primary" onclick="selectVehicle('${v.name}')">${selectedVehicle === v.name ? "Selected &#10003;" : "Book"}</button>
+            <div class="price">LKR ${esc(v.price)} <small>${esc(v.unit)}</small></div>
+            <button class="btn btn-primary" onclick="selectVehicle(${i})">${isSel ? "Selected &#10003;" : "Book"}</button>
           </div>
         </div>
-      </div>`).join("");
+      </div>`;
+    }).join("");
+  }
+
+  function renderOffers(offers) {
+    const el = document.getElementById("offers");
+    el.innerHTML = offers.map((o, i) => {
+      const wa = o.service === "WhatsApp";
+      const link = wa
+        ? `<a class="offer-link" href="https://wa.me/94724805594" target="_blank" rel="noopener">`
+        : `<a class="offer-link" href="#cars" data-service="${esc(o.service)}">`;
+      return `<div class="offer o${(i % 4) + 1}">
+        <div><h3>${esc(o.title)}</h3><p>${esc(o.description)}</p></div>
+        ${link}${esc(o.link_text)} &rarr;</a>
+      </div>`;
+    }).join("");
+    el.querySelectorAll("[data-service]").forEach(a =>
+      a.addEventListener("click", () => pickService(a.dataset.service)));
+  }
+
+  function renderGlance(items) {
+    document.getElementById("glance").innerHTML = items.map(t =>
+      `<div class="info-tile"><div class="label">${esc(t.label)}</div><div class="value">${esc(t.value)}</div></div>`).join("");
+  }
+
+  function renderFaqs(items) {
+    document.getElementById("faqList").innerHTML = items.map((f, i) =>
+      `<details${i === 0 ? " open" : ""}><summary>${esc(f.question)}</summary><p>${esc(f.answer)}</p></details>`).join("");
   }
 
   function setActive(groupId, attr, value) {
@@ -638,12 +603,13 @@
     document.getElementById("cars").scrollIntoView({ behavior: "smooth" });
   }
 
-  function selectVehicle(name) {
-    selectedVehicle = name;
-    const v = vehicles.find(x => x.name === name);
+  function selectVehicle(i) {
+    const v = vehicles[i];
+    if (!v) return;
+    selectedVehicle = v.name;
     const svc = document.getElementById("service");
-    if (!v.services.includes(svc.value)) svc.value = v.services[0];
-    document.getElementById("selectedVehicleName").textContent = name;
+    if (v.services.length && !v.services.includes(svc.value)) svc.value = v.services[0];
+    document.getElementById("selectedVehicleName").textContent = v.name;
     document.getElementById("submitBtn").disabled = false;
     renderCars();
     document.getElementById("booking").scrollIntoView({ behavior: "smooth" });
@@ -687,7 +653,26 @@
   document.getElementById("date").min = today;
   document.getElementById("date2").min = today;
 
-  renderCars();
+  // ---- Load content from data/ ----
+  const getJSON = file => fetch("data/" + file, { cache: "no-cache" }).then(r => {
+    if (!r.ok) throw new Error(file);
+    return r.json();
+  });
+
+  Promise.all(["cars.json", "offers.json", "glance.json", "faqs.json"].map(getJSON))
+    .then(([cars, offers, glance, faqs]) => {
+      vehicles = (cars || [])
+        .filter(c => c && c.name && c.show !== false)
+        .map(c => ({ ...c, img: imgPath(c.image), specs: c.specs || [], services: c.services || [] }));
+      renderOffers(offers || []);
+      renderGlance(glance || []);
+      renderFaqs(faqs || []);
+      renderCars();
+    })
+    .catch(() => {
+      document.getElementById("carGrid").innerHTML =
+        `<p>Sorry, the car list couldn't load. Please refresh the page, or WhatsApp us on +94 72 480 5594.</p>`;
+    });
 </script>
 </body>
 </html>
